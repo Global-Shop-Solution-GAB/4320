@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SyntaxEdit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Pages>
+    <DefaultPage>
+      <Header />
+      <Footer />
+    </DefaultPage>
+  </Pages>
+  <DisplayStrings />
+  <Selection>
+    <SelectionRect>
+      <Location>
+        <X>0</X>
+        <Y>194</Y>
+      </Location>
+      <Size>
+        <Width>24</Width>
+        <Height>2</Height>
+      </Size>
+      <X>0</X>
+      <Y>194</Y>
+      <Width>24</Width>
+      <Height>2</Height>
+    </SelectionRect>
+    <Options>UseColors OverwriteBlocks SelectLineOnTripleClick CopyLineWhenEmpty SelectWordOnCtrlClick</Options>
+  </Selection>
+  <Gutter>
+    <Options>PaintLineNumbers PaintBookMarks PaintLineModificators</Options>
+  </Gutter>
+  <Margin>
+    <Visible>false</Visible>
+  </Margin>
+  <LineStyles />
+  <LineSeparator />
+  <Printing>
+    <Footer />
+    <Header />
+  </Printing>
+  <WhiteSpace />
+  <TextSource>
+    <Position>
+      <X>0</X>
+      <Y>194</Y>
+    </Position>
+    <Lexer>
+      <Scheme>
+        <Author>Quantum Whale, LLC.</Author>
+        <Copyright>Copyright (c) 2004 - 2014 Quantum Whale LLC.</Copyright>
+        <FileType>gas</FileType>
+        <Version>1.5</Version>
+        <Styles>
+          <Style>
+            <Name>idents</Name>
+            <ForeColor>ControlText</ForeColor>
+          </Style>
+          <Style>
+            <Name>numbers</Name>
+            <ForeColor>ControlText</ForeColor>
+          </Style>
+          <Style>
+            <Name>reswords</Name>
+            <ForeColor>Blue</ForeColor>
+          </Style>
+          <Style>
+            <Name>comments</Name>
+            <ForeColor>Green</ForeColor>
+            <PlainText>true</PlainText>
+          </Style>
+          <Style>
+            <Name>xmlcomments</Name>
+            <ForeColor>Gray</ForeColor>
+          </Style>
+          <Style>
+            <Name>symbols</Name>
+            <ForeColor>WindowText</ForeColor>
+          </Style>
+          <Style>
+            <Name>whitespace</Name>
+            <ForeColor>WindowText</ForeColor>
+          </Style>
+          <Style>
+            <Name>strings</Name>
+            <ForeColor>Maroon</ForeColor>
+            <PlainText>true</PlainText>
+          </Style>
+          <Style>
+            <Name>directives</Name>
+            <ForeColor>Blue</ForeColor>
+          </Style>
+          <Style>
+            <Name>htmlparams</Name>
+            <ForeColor>Red</ForeColor>
+          </Style>
+          <Style>
+            <Name>syntax errors</Name>
+            <ForeColor>Red</ForeColor>
+          </Style>
+          <Style>
+            <Name>codes nippets</Name>
+            <ForeColor>Black</ForeColor>
+            <BackColor>255:180:228:180</BackColor>
+          </Style>
+          <Style>
+            <Name>GabReservedWords</Name>
+            <ForeColor>Blue</ForeColor>
+          </Style>
+          <Style>
+            <Name>GabTokenWithBrackets</Name>
+            <ForeColor>Gray</ForeColor>
+          </Style>
+          <Style>
+            <Name>GabFunctionIntrinsicDebug</Name>
+            <ForeColor>White</ForeColor>
+            <BackColor>Red</BackColor>
+            <FontStyle>Bold</FontStyle>
+            <PlainText>true</PlainText>
+          </Style>
+          <Style>
+            <Name>GabVariable</Name>
+            <ForeColor>Teal</ForeColor>
+          </Style>
+          <Style>
+            <Name>GabVariableSystemDefined</Name>
+            <ForeColor>Teal</ForeColor>
+            <FontStyle>Bold Italic</FontStyle>
+          </Style>
+          <Style>
+            <Name>GabGui</Name>
+            <ForeColor>OrangeRed</ForeColor>
+          </Style>
+          <Style>
+            <Name>GabProgramSubStartEnd</Name>
+            <ForeColor>Black</ForeColor>
+            <BackColor>LightGray</BackColor>
+            <FontStyle>Bold</FontStyle>
+            <PlainText>true</PlainText>
+          </Style>
+        </Styles>
+      </Scheme>
+    </Lexer>
+    <TextStrings>
+      <Lines>
+        <string>Program.Sub.Preflight.Start</string>
+        <string />
+        <string>Program.Sub.Preflight.End</string>
+        <string />
+        <string>Program.Sub.Main.Start</string>
+        <string>F.Intrinsic.Control.SetErrorHandler("Main_Err")</string>
+        <string>F.Intrinsic.Control.ClearErrors</string>
+        <string />
+        <string>V.Local.sError.Declare(String)</string>
+        <string />
+        <string>'Shop Floor&gt; Transactions&gt; Transfer Labor to Payroll</string>
+        <string>'Hook 15290</string>
+        <string>'Coded by: RAN </string>
+        <string />
+        <string>f.Intrinsic.Control.If(v.Caller.Hook,=,"15290")</string>
+        <string>	f.Intrinsic.Control.CallSub(createfile)</string>
+        <string>f.Intrinsic.Control.EndIf </string>
+        <string />
+        <string>F.Intrinsic.Control.ExitSub</string>
+        <string />
+        <string>F.Intrinsic.Control.Label("Main_Err")</string>
+        <string>F.Intrinsic.Control.If(V.Ambient.ErrorNumber,&lt;&gt;,0)</string>
+        <string>	Function.Intrinsic.String.Concat("Project: GCG_4320_PYRLEXPORT.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)</string>
+        <string>	F.Intrinsic.UI.Msgbox(V.Local.sError)</string>
+        <string>Function.Intrinsic.Control.EndIf</string>
+        <string />
+        <string />
+        <string>Program.Sub.Main.End</string>
+        <string />
+        <string>Program.Sub.Createfile.Start</string>
+        <string>F.Intrinsic.Control.SetErrorHandler("Createfile_Err")</string>
+        <string>F.Intrinsic.Control.ClearErrors</string>
+        <string />
+        <string>V.Local.sError.Declare(String)</string>
+        <string />
+        <string>V.Local.sQuery.Declare</string>
+        <string>V.Local.sCymd.Declare</string>
+        <string>V.Local.sTime.Declare</string>
+        <string>V.Local.sRecord.Declare</string>
+        <string>V.Local.sRet.Declare</string>
+        <string>V.Local.sDEmp.Declare</string>
+        <string>V.Local.sEmp.Declare</string>
+        <string>V.Local.sEC.Declare</string>
+        <string>V.Local.sRate.Declare</string>
+        <string>V.Local.fRate.Declare</string>
+        <string>V.Local.sHours.Declare</string>
+        <string>V.Local.bExist.Declare</string>
+        <string>V.Local.sClientID.Declare</string>
+        <string />
+        <string />
+        <string>F.Intrinsic.Debug.InvokeDebugger</string>
+        <string />
+        <string>F.Intrinsic.Debug.Stop</string>
+        <string />
+        <string />
+        <string>F.Intrinsic.String.Left(V.Passed.888888,8,V.Local.sCymd)</string>
+        <string>F.Intrinsic.String.Mid(V.Passed.888888,9,6,V.Local.sTime)</string>
+        <string />
+        <string>F.Intrinsic.String.Concat("Select PYRL.Employee, PYRL.Descr, PYRL.EC, PYRL.Hours, EMP.Dept_Employee, EMP.Rate From Pyrl_Labor_Xfer PYRL LEFT JOIN Employee_Mstr EMP on PYRL.Employee = EMP.Employee where PYRL.Run_Cymd = '",V.Local.sCymd,"' AND PYRL.Run_Time = '",V.Local.sTime,"'",V.Local.sQuery)</string>
+        <string />
+        <string>F.ODBC.Connection!conX.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)</string>
+        <string />
+        <string>F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)</string>
+        <string />
+        <string>f.Intrinsic.Control.If(v.ODBC.conX!rst.EOF)</string>
+        <string>	F.ODBC.conX!rst.Close</string>
+        <string>	F.ODBC.Connection!conX.Close</string>
+        <string>	F.Intrinsic.UI.Msgbox("No records found.","Payroll Export")</string>
+        <string>	F.Intrinsic.Control.End</string>
+        <string />
+        <string>F.Intrinsic.Control.EndIf</string>
+        <string />
+        <string>V.Local.sRecord.Set("Client ID*!*Worker ID*!*Org*!*Job Number*!*Pay Component*!*Rate*!*Rate Number*!*Hours*!*Units*!*Line Date*!*Amount*!*Check Seq Number*!*Override State*!*Override Local*!*Override Local Jurisdiction*!*Labor Override")</string>
+        <string />
+        <string>'Client ID: 12069458</string>
+        <string>'Client ID: 12069458</string>
+        <string>'Worker ID: Employee number </string>
+        <string>'Org: Employee Dept</string>
+        <string>'Job Number: BLANK</string>
+        <string>'Pay Component: Description (Regular, Overtime, Doubletime, Sick, etc)</string>
+        <string>'Rate: Rate of pay</string>
+        <string>'Rate Number: BLANK</string>
+        <string>'Hours: Hours worked</string>
+        <string>'Units: BLANK</string>
+        <string>'Line Date: BLANK</string>
+        <string>'Amount: BLANK</string>
+        <string>'Check Seq Number: BLANK</string>
+        <string>'Override State: BLANK</string>
+        <string>'Override Local: BLANK</string>
+        <string>'Override Local Jurisdiction: BLANK</string>
+        <string>'Labor Override: BLANK</string>
+        <string />
+        <string />
+        <string>V.Local.sClientID.Set("12069458")</string>
+        <string />
+        <string>f.Intrinsic.Control.DoUntil(v.ODBC.conX!rst.EOF)</string>
+        <string />
+        <string>	F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldVal!Dept_Employee,=,V.Ambient.Null)</string>
+        <string>		V.Local.sDEmp.Set("")</string>
+        <string>	F.Intrinsic.Control.Else</string>
+        <string>		V.Local.sDEmp.Set(V.ODBC.conX!rst.FieldVal!Dept_Employee)</string>
+        <string>	F.Intrinsic.Control.EndIf</string>
+        <string />
+        <string>	F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldVal!Employee,=,V.Ambient.Null)</string>
+        <string>		V.Local.sEmp.Set("")</string>
+        <string>	F.Intrinsic.Control.Else</string>
+        <string>		V.Local.sEmp.Set(V.ODBC.conX!rst.FieldVal!Employee)</string>
+        <string>		F.Intrinsic.String.LPad(V.Local.sEmp,0,6,V.Local.sEmp)</string>
+        <string>	F.Intrinsic.Control.EndIf</string>
+        <string />
+        <string>	F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldVal!Descr,=,V.Ambient.Null)</string>
+        <string>		V.Local.sEC.Set("")</string>
+        <string>	F.Intrinsic.Control.Else</string>
+        <string>		V.Local.sEC.Set(V.ODBC.conX!rst.FieldVal!Descr)</string>
+        <string>	F.Intrinsic.Control.EndIf</string>
+        <string />
+        <string>	F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldVal!Rate,=,V.Ambient.Null)</string>
+        <string>		V.Local.fRate.Set(0.00)</string>
+        <string>	F.Intrinsic.Control.Else</string>
+        <string>'		F.Intrinsic.Math.ConvertToFloat(V.Local.sRate,V.Local.fRate)</string>
+        <string>		F.Intrinsic.String.Format(V.ODBC.conX!rst.FieldVal!Rate,"000.00",V.Local.fRate)</string>
+        <string>	F.Intrinsic.Control.EndIf</string>
+        <string />
+        <string>	F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldVal!Hours,=,V.Ambient.Null)</string>
+        <string>		V.Local.sHours.Set("")</string>
+        <string>	F.Intrinsic.Control.Else</string>
+        <string>		V.Local.sHours.Set(V.ODBC.conX!rst.FieldVal!Hours)</string>
+        <string>	F.Intrinsic.Control.EndIf</string>
+        <string />
+        <string>	f.Intrinsic.String.Build("{0}$!${1},{2},{3},{4},{5},{6},{4},{7},{4},{4},{4},{4},{4},{4},{4},{4}",V.Local.sRecord,V.Local.sClientID,V.Local.sEmp,V.Local.sDEmp,"",V.Local.sEC,V.Local.fRate,V.Local.sHours,V.Local.sRecord)</string>
+        <string>	</string>
+        <string>	F.ODBC.conX!rst.MoveNext</string>
+        <string>F.Intrinsic.Control.Loop</string>
+        <string />
+        <string>F.Intrinsic.Control.CallSub(Writetofile,"REC",V.Local.sRecord)</string>
+        <string />
+        <string>F.ODBC.conX!rst.Close</string>
+        <string>F.ODBC.Connection!conX.Close</string>
+        <string />
+        <string />
+        <string>F.Intrinsic.Control.ExitSub</string>
+        <string />
+        <string>F.Intrinsic.Control.Label("Createfile_Err")</string>
+        <string>F.Intrinsic.Control.If(V.Ambient.ErrorNumber,&lt;&gt;,0)</string>
+        <string>	Function.Intrinsic.String.Concat("Project: GCG_4320_PYRLEXPORT.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)</string>
+        <string>	F.Intrinsic.UI.Msgbox(V.Local.sError)</string>
+        <string>Function.Intrinsic.Control.EndIf</string>
+        <string />
+        <string />
+        <string>Program.Sub.Createfile.End</string>
+        <string />
+        <string>Program.Sub.Writetofile.Start</string>
+        <string>F.Intrinsic.Control.SetErrorHandler("Writetofile_Err")</string>
+        <string>F.Intrinsic.Control.ClearErrors</string>
+        <string />
+        <string>V.Local.sError.Declare(String)</string>
+        <string>V.Local.bexists.Declare(Boolean)</string>
+        <string>V.Local.sfile.Declare(String)</string>
+        <string>V.Local.sfilename.Declare(String)</string>
+        <string>V.Local.sfullpath.Declare(String)</string>
+        <string>V.Local.sdate.Declare(String)</string>
+        <string />
+        <string>'G:\Michelle\Trish's Office Docs\PAYCHEX PAY with the file name convention PAYCHEXMMDDYY.csv.  </string>
+        <string />
+        <string>'build the filepath</string>
+        <string>	V.Local.sfile.Set("G:\Michelle\Trish's Office Docs\PAYCHEX PAY")</string>
+        <string />
+        <string>	f.Intrinsic.String.Build("{0}\PAYCHEX PAY",v.Caller.FilesDir,v.Local.sfile)</string>
+        <string>	'see if the folder exists</string>
+        <string>	F.Intrinsic.File.Exists(V.Local.sfile,V.Local.bexists)</string>
+        <string>	'if the file doesn't exists create it</string>
+        <string>	F.Intrinsic.Control.If(V.Local.bexists,=,False)</string>
+        <string>		F.Intrinsic.File.CreateDir(V.Local.sfile)</string>
+        <string>	F.Intrinsic.Control.EndIf</string>
+        <string>	'set the date and format it</string>
+        <string>	Function.Intrinsic.String.Format (V.Ambient.Date ,"MMDDYYYY",V.Local.sdate)</string>
+        <string />
+        <string>	'build the filename</string>
+        <string>	F.Intrinsic.String.Build("{0}.csv",V.Local.sDate,V.Local.sfilename)</string>
+        <string>	'build the full path</string>
+        <string>	F.Intrinsic.String.Build("{0}\{1}",V.local.sfile,V.Local.sfilename,V.Local.sfullpath)</string>
+        <string>	F.Intrinsic.File.String2File(V.Local.sfullpath,V.Args.REC)</string>
+        <string>	</string>
+        <string>F.Intrinsic.Control.ExitSub</string>
+        <string />
+        <string>F.Intrinsic.Control.Label("Writetofile_Err")</string>
+        <string>F.Intrinsic.Control.If(V.Ambient.ErrorNumber,&lt;&gt;,0)</string>
+        <string>	Function.Intrinsic.String.Concat("Project: GCG_4320_PYRLEXPORT.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)</string>
+        <string>	F.Intrinsic.UI.Msgbox(V.Local.sError)</string>
+        <string>Function.Intrinsic.Control.EndIf</string>
+        <string />
+        <string />
+        <string>Program.Sub.Writetofile.End</string>
+        <string />
+        <string>Program.Sub.Comments.Start</string>
+        <string>${$0$}$$}$$}$12/27/2016 8:22:09 PM$}$False</string>
+        <string>Program.Sub.Comments.End</string>
+      </Lines>
+    </TextStrings>
+  </TextSource>
+  <Scrolling>
+    <WindowOriginY>139</WindowOriginY>
+  </Scrolling>
+  <Outlining>
+    <AllowOutlining>true</AllowOutlining>
+    <ImageSize>8</ImageSize>
+    <Ranges>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>0</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>2</Y>
+        </EndPoint>
+        <Text>Program.Sub.Preflight</Text>
+        <DisplayText>Program.Sub.Preflight</DisplayText>
+        <Visible>false</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>4</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>27</Y>
+        </EndPoint>
+        <Text>Program.Sub.Main</Text>
+        <DisplayText>Program.Sub.Main</DisplayText>
+        <Visible>true</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>29</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>149</Y>
+        </EndPoint>
+        <Text>Program.Sub.Createfile</Text>
+        <DisplayText>Program.Sub.Createfile</DisplayText>
+        <Visible>true</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>151</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>192</Y>
+        </EndPoint>
+        <Text>Program.Sub.Writetofile</Text>
+        <DisplayText>Program.Sub.Writetofile</DisplayText>
+        <Visible>true</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>194</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>196</Y>
+        </EndPoint>
+        <Text>Program.Sub.Comments</Text>
+        <DisplayText>Program.Sub.Comments</DisplayText>
+        <Visible>false</Visible>
+        <Level>0</Level>
+      </Range>
+    </Ranges>
+  </Outlining>
+  <HyperText />
+  <Spelling />
+  <Braces />
+</SyntaxEdit>
