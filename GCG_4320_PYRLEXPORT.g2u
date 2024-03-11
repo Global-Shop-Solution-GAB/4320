@@ -1,0 +1,231 @@
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'Shop Floor> Transactions> Transfer Labor to Payroll
+'Hook 15290
+'Coded by: RAN 
+
+
+
+f.Intrinsic.Control.If(v.Caller.Hook,=,"15290")
+	f.Intrinsic.Control.CallSub(createfile)
+f.Intrinsic.Control.EndIf 
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4320_PYRLEXPORT.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Main.End
+
+Program.Sub.Createfile.Start
+F.Intrinsic.Control.SetErrorHandler("Createfile_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sQuery.Declare
+V.Local.sCymd.Declare
+V.Local.sTime.Declare
+V.Local.sRecord.Declare
+V.Local.sRet.Declare
+V.Local.sDEmp.Declare
+V.Local.sEmp.Declare
+V.Local.sEC.Declare
+V.Local.sRate.Declare
+V.Local.fRate.Declare
+V.Local.sHours.Declare
+V.Local.bExist.Declare
+V.Local.sClientID.Declare
+v.Local.bdesc.Declare
+
+
+
+
+F.Intrinsic.String.Left(V.Passed.888888,8,V.Local.sCymd)
+F.Intrinsic.String.Mid(V.Passed.888888,9,6,V.Local.sTime)
+
+F.Intrinsic.String.Concat("Select PYRL.Employee, PYRL.Descr, PYRL.EC, PYRL.Hours, EMP.Dept_Employee, EMP.Rate From Pyrl_Labor_Xfer PYRL LEFT JOIN Employee_Mstr EMP on PYRL.Employee = EMP.Employee where PYRL.Run_Cymd = '",V.Local.sCymd,"' AND PYRL.Run_Time = '",V.Local.sTime,"'",V.Local.sQuery)
+
+F.ODBC.Connection!conX.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+
+f.Intrinsic.Control.If(v.ODBC.conX!rst.EOF)
+	F.ODBC.conX!rst.Close
+	F.ODBC.Connection!conX.Close
+	F.Intrinsic.UI.Msgbox("No records found.","Payroll Export")
+	F.Intrinsic.Control.End
+
+F.Intrinsic.Control.EndIf
+
+V.Local.sRecord.Set("Client ID,Worker ID,Org,Job Number,Pay Component,Rate,Rate Number,Hours,Units,Line Date,Amount,Check Seq Number,Override State,Override Local,Override Local Jurisdiction,Labor Override")
+
+'Client ID: 12069458
+'Client ID: 12069458
+'Worker ID: Employee number 
+'Org: Employee Dept
+'Job Number: BLANK
+'Pay Component: Description (Regular, Overtime, Doubletime, Sick, etc)
+'Rate: Rate of pay
+'Rate Number: BLANK
+'Hours: Hours worked
+'Units: BLANK
+'Line Date: BLANK
+'Amount: BLANK
+'Check Seq Number: BLANK
+'Override State: BLANK
+'Override Local: BLANK
+'Override Local Jurisdiction: BLANK
+'Labor Override: BLANK
+
+
+'F.Intrinsic.Debug.InvokeDebugger
+
+V.Local.sClientID.Set("12069458")
+
+f.Intrinsic.Control.DoUntil(v.ODBC.conX!rst.EOF)
+
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldVal!Dept_Employee,=,V.Ambient.Null)
+		V.Local.sDEmp.Set("")
+	F.Intrinsic.Control.Else
+		V.Local.sDEmp.Set(V.ODBC.conX!rst.FieldVal!Dept_Employee)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldVal!Employee,=,V.Ambient.Null)
+		V.Local.sEmp.Set("")
+	F.Intrinsic.Control.Else
+		V.Local.sEmp.Set(V.ODBC.conX!rst.FieldVal!Employee)
+		F.Intrinsic.String.LPad(V.Local.sEmp,0,6,V.Local.sEmp)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldValtrim!Descr,=,V.Ambient.Null)
+		V.Local.sEC.Set("")
+	F.Intrinsic.Control.Else
+		f.Intrinsic.String.IsInString(v.ODBC.conX!rst.FieldValtrim!Descr,"-",True,v.Local.bdesc)
+		'if bdesc is true, set your extra desc
+		f.Intrinsic.Control.If(v.Local.bdesc,=,True)
+			f.Intrinsic.String.Split(v.ODBC.conX!rst.FieldValtrim!Descr,"-",v.Local.sEC)
+			V.Local.sEC.Set(v.Local.sEC(1))
+		F.Intrinsic.Control.Else
+			V.Local.sEC.Set(v.ODBC.conX!rst.FieldValtrim!Descr)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	
+	
+'F.Intrinsic.Debug.InvokeDebugger
+'
+'F.Intrinsic.Debug.Stop
+
+	f.Intrinsic.Control.If(V.Local.sEC.UCase,=,"REGULAR")
+		V.Local.sEC.Set("Hourly")
+	f.Intrinsic.Control.EndIf 
+	
+	Function.Intrinsic.String.PCase(V.Local.sEC, V.Local.sEC)
+	
+
+'	F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldVal!Rate,=,V.Ambient.Null)
+'		V.Local.fRate.Set(0.00)
+'	F.Intrinsic.Control.Else
+''		F.Intrinsic.Math.ConvertToFloat(V.Local.sRate,V.Local.fRate)
+		F.Intrinsic.String.Format(V.ODBC.conX!rst.FieldVal!Rate,"000.00",V.Local.fRate)
+'	F.Intrinsic.Control.EndIf
+'	
+'	F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldVal!Rate,=,V.Ambient.Null)
+'		V.Local.fRate.Set(0.00)
+'	F.Intrinsic.Control.Else
+'		V.Local.sRate.Set(V.ODBC.conX!rst.FieldVal!Rate)
+'		F.Intrinsic.Math.ConvertToFloat(V.Local.sRate,V.Local.fRate)
+'	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldVal!Hours,=,V.Ambient.Null)
+		V.Local.sHours.Set("")
+	F.Intrinsic.Control.Else
+		V.Local.sHours.Set(V.ODBC.conX!rst.FieldVal!Hours)
+	F.Intrinsic.Control.EndIf
+
+	f.Intrinsic.String.Build("{0}{1}{2},{3},{4},{5},{6},{7},{5},{8},{5},{5},{5},{5},{5},{5},{5},{5}",V.Local.sRecord,v.Ambient.NewLine,V.Local.sClientID,V.Local.sEmp,V.Local.sDEmp,"",V.Local.sEC,V.Local.fRate,V.Local.sHours,V.Local.sRecord)
+	
+	F.ODBC.conX!rst.MoveNext
+F.Intrinsic.Control.Loop
+
+F.ODBC.conX!rst.Close
+F.ODBC.Connection!conX.Close
+
+'
+'F.Intrinsic.Debug.InvokeDebugger
+'
+'F.Intrinsic.Debug.Stop
+F.Intrinsic.Control.CallSub(Writetofile,"REC",V.Local.sRecord)
+
+
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Createfile_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4320_PYRLEXPORT.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Createfile.End
+
+Program.Sub.Writetofile.Start
+F.Intrinsic.Control.SetErrorHandler("Writetofile_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.bexists.Declare(Boolean)
+V.Local.sfile.Declare(String)
+V.Local.sfilename.Declare(String)
+V.Local.sfullpath.Declare(String)
+V.Local.sdate.Declare(String)
+
+'G:\Michelle\Trish's Office Docs\PAYCHEX PAY with the file name convention PAYCHEXMMDDYY.csv.  
+
+'build the filepath
+'	V.Local.sfile.Set("G:\Michelle\Trish's Office Docs\PAYCHEX PAY")
+
+	f.Intrinsic.String.Build("{0}\PAYCHEX PAY",v.Caller.FilesDir,v.Local.sfile)
+	'see if the folder exists
+	F.Intrinsic.File.Exists(V.Local.sfile,V.Local.bexists)
+	'if the file doesn't exists create it
+	F.Intrinsic.Control.If(V.Local.bexists,=,False)
+		F.Intrinsic.File.CreateDir(V.Local.sfile)
+	F.Intrinsic.Control.EndIf
+	'set the date and format it
+	Function.Intrinsic.String.Format (V.Ambient.Date ,"MMDDYYYY",V.Local.sdate)
+
+	'build the filename
+	F.Intrinsic.String.Build("{0}.csv",V.Local.sDate,V.Local.sfilename)
+	'build the full path
+	F.Intrinsic.String.Build("{0}\{1}",V.local.sfile,V.Local.sfilename,V.Local.sfullpath)
+	F.Intrinsic.File.String2File(V.Local.sfullpath,V.Args.REC)
+	
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Writetofile_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4320_PYRLEXPORT.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Writetofile.End
+
+Program.Sub.Comments.Start
+${$0$}$$}$$}$12/27/2016 8:22:09 PM$}$False
+Program.Sub.Comments.End
